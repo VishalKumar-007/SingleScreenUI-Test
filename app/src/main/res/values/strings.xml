@@ -1,3 +1,32 @@
 <resources>
     <string name="app_name">SingleScreenUI</string>
+    <string name="first_name"><font size="18">First Name</font></string>
+    <string name="last_name"><font size="18">Last Name</font></string>
+    <string name="email"><font size="18">Email</font></string>
+    <string name="password"><font size="18">Password</font></string>
+    <string name="mobile_number"><font size="18">Mobile Number</font></string>
+
+    // string array for country selection
+    <string-array name="country_list">
+        <item>India</item>
+        <item>Pakistan</item>
+        <item>Austrailia</item>
+        <item>America</item>
+        <item>Dubai</item>
+        <item>Russia</item>
+        <item>Ukraine</item>
+        <item>Bangladesh</item>
+        <item>Maldives</item>
+        <item>Ethopia</item>
+        <item>Rome</item>
+        <item>New Zealand</item>
+        <item>South Africa</item>
+        <item>Zimbabwe</item>
+        <item>England</item>
+    </string-array>
+
+    <string name="policy">policy.</string>
+    <string name="terms_of_use">terms of use</string>
+    <string name="by_signing_in_you_agree_to_our">By Signing in, you agree to our  </string>
+
 </resources>
