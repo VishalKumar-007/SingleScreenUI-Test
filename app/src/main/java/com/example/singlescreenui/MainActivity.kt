@@ -4,7 +4,6 @@ import android.app.DatePickerDialog
 import android.app.TimePickerDialog
 import android.content.Intent
 import android.graphics.Color
-import android.opengl.Visibility
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Patterns
@@ -16,6 +15,9 @@ import java.util.*
 
 class MainActivity : AppCompatActivity() {
 
+//    lateinit var imgCircleProfile: CircleImageView
+//    lateinit var imgAddProfile: ImageView
+//    lateinit var imgRemoveProfile: ImageView
     lateinit var etFirstName: EditText
     lateinit var etLastName: EditText
     lateinit var etEmail: EditText
@@ -81,6 +83,9 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+//        imgCircleProfile = findViewById(R.id.imgCircleProfile)
+//        imgAddProfile = findViewById(R.id.imgAddProfile)
+//        imgRemoveProfile = findViewById(R.id.imgRemoveProfile)
         etFirstName = findViewById(R.id.etFirstName)
         etLastName = findViewById(R.id.etLastName)
         etEmail = findViewById(R.id.etEmail)
