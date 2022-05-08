@@ -4,6 +4,7 @@ import android.app.DatePickerDialog
 import android.app.TimePickerDialog
 import android.content.Intent
 import android.graphics.Color
+import android.opengl.Visibility
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Patterns
@@ -26,6 +27,7 @@ class MainActivity : AppCompatActivity() {
     lateinit var cbIntermediate: CheckBox
     lateinit var cbGraduation: CheckBox
     lateinit var cbPostGraduation: CheckBox
+    lateinit var tvQualificationError: TextView
     lateinit var etBio : TextInputEditText
     lateinit var datePicker : TextView
     lateinit var timePicker: TextView
@@ -90,6 +92,7 @@ class MainActivity : AppCompatActivity() {
         cbIntermediate = findViewById(R.id.cbIntermediate)
         cbGraduation = findViewById(R.id.cbGraduation)
         cbPostGraduation = findViewById(R.id.cbPostGraduation)
+        tvQualificationError = findViewById(R.id.tvQualificationError)
         etBio = findViewById(R.id.etBio)
         datePicker = findViewById(R.id.datePicker)
         timePicker = findViewById(R.id.timePicker)
@@ -107,43 +110,49 @@ class MainActivity : AppCompatActivity() {
             val mobileNumber = etMobileNumber.text.toString()
 
             if(firstName.isEmpty()){
-                etFirstName.error = "Please enter your first name"
+                etFirstName.error = "Please enter your first name."
             }
             else if (firstName.length < 2){
-                etFirstName.error = "First name should contain at least two characters"
+                etFirstName.error = "First name should contain at least two characters."
             }
             else if (lastName.isEmpty()){
-                etLastName.error = "Please enter your last name"
+                etLastName.error = "Please enter your last name."
             }
             else if (lastName.length < 2){
-                etLastName.error = "Last name should contain at least two characters"
+                etLastName.error = "Last name should contain at least two characters."
             }
             else if (firstName == lastName){
-                etLastName.error = "First name and last name can't be same"
+                etLastName.error = "First name and last name can't be same."
             }
             else if (email.isEmpty()){
-                etEmail.error = "Please enter your email address"
+                etEmail.error = "Please enter your email address."
             }
             else if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()){
-                etEmail.error = "Please enter valid email address"
+                etEmail.error = "Please enter valid email address."
             }
             else if (password.isEmpty()){
-                etPassword.error = "Please enter your password"
+                etPassword.error = "Please enter your password."
             }
             else if (password.length < 8){
                 etPassword.error = "Password should contain at least 8 characters."
             }
             else if (mobileNumber.isEmpty()){
-                etMobileNumber.error = "Please enter your mobile number"
+                etMobileNumber.error = "Please enter your mobile number."
             }
             else if (mobileNumber.length < 10){
-                etMobileNumber.error = "Mobile number should contain at least 10 digits"
+                etMobileNumber.error = "Mobile number should contain at least 10 digits."
+            }
+            else if ( !( (cbMetric.isChecked) || (cbIntermediate.isChecked) || (cbGraduation.isChecked) || (cbPostGraduation.isChecked) ) ){
+                tvQualificationError.visibility = View.VISIBLE
+                tvQualificationError.text = "*Please select at least one checkbox."
             }
             else if (!cbAgreement.isChecked){
-                tvAgreementError.text = "Please accept terms and conditions"
+                tvAgreementError.visibility = View.VISIBLE
+                tvAgreementError.text = "*Please accept terms and conditions."
             }
             else {
-                tvAgreementError.setText("")
+                tvQualificationError.visibility = View.GONE
+                tvAgreementError.visibility = View.GONE
 
                 // It will clear all fields when submit button is clicked.
                 etFirstName.text.clear()
@@ -151,6 +160,10 @@ class MainActivity : AppCompatActivity() {
                 etEmail.text.clear()
                 etPassword.text.clear()
                 etMobileNumber.text.clear()
+                cbMetric.isChecked = false
+                cbIntermediate.isChecked = false
+                cbGraduation.isChecked = false
+                cbPostGraduation.isChecked = false
                 etBio.text?.clear()
                 cbAgreement.isChecked = false
 
@@ -172,7 +185,6 @@ class MainActivity : AppCompatActivity() {
             }
             false
         })
-        etBio.setSelection(0)
 
         // Added checkbox validations in Qualifications part
         cbIntermediate.setOnClickListener {
@@ -236,8 +248,7 @@ class MainActivity : AppCompatActivity() {
                 false
             )
 
-            // then after building the timepicker
-            // dialog show the dialog to user
+            // then after building the timepicker dialog, show the dialog to user
             timePicker.show()
         }
 

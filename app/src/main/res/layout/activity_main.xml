@@ -349,6 +349,15 @@
                     </LinearLayout>
 
                     <TextView
+                        android:id="@+id/tvQualificationError"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="19dp"
+                        android:text=""
+                        android:visibility="gone"
+                        android:textColor="@color/red" />
+
+                    <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="0dp"
                         android:layout_marginHorizontal="17dp"
@@ -587,6 +596,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginHorizontal="19dp"
                         android:text=""
+                        android:visibility="gone"
                         android:textColor="@color/red" />
 
                 </LinearLayout>
