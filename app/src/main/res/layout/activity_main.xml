@@ -83,7 +83,7 @@
                             android:layout_marginTop="12sp"
                             android:layout_toEndOf="@+id/imgAddProfile"
                             android:src="@drawable/red_cross"
-                            android:visibility="gone"/>
+                            android:visibility="gone" />
 
                     </RelativeLayout>
 
@@ -93,12 +93,13 @@
                         android:layout_height="wrap_content"
                         android:layout_marginHorizontal="15dp"
                         android:layout_marginTop="10dp"
+                        android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
                         android:hint="@string/first_name"
-                        android:inputType="text"
+                        android:inputType="textCapWords"
                         android:maxLength="20"
                         android:paddingHorizontal="8dp"
-                        android:theme="@style/EditTextTheme"
-                        android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"/>
+                        android:singleLine="true"
+                        android:theme="@style/EditTextTheme" />
 
                     <EditText
                         android:id="@+id/etLastName"
@@ -106,12 +107,13 @@
                         android:layout_height="wrap_content"
                         android:layout_marginHorizontal="15dp"
                         android:layout_marginTop="7dp"
+                        android:digits=" abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
                         android:hint="@string/last_name"
                         android:inputType="text"
                         android:maxLength="20"
                         android:paddingHorizontal="8dp"
-                        android:theme="@style/EditTextTheme"
-                        android:digits=" abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"/>
+                        android:singleLine="true"
+                        android:theme="@style/EditTextTheme" />
 
                     <EditText
                         android:id="@+id/etEmail"
@@ -133,8 +135,8 @@
                         android:layout_marginTop="7dp"
                         android:hint="@string/password"
                         android:inputType="textPassword"
-                        android:paddingHorizontal="8dp"
                         android:maxLength="16"
+                        android:paddingHorizontal="8dp"
                         android:theme="@style/EditTextTheme" />
 
                     <LinearLayout
@@ -143,7 +145,8 @@
                         android:layout_marginHorizontal="15dp"
                         android:layout_marginTop="7dp"
                         android:orientation="horizontal"
-                        android:weightSum="10">
+                        android:paddingStart="3.5dp"
+                        android:paddingEnd="1dp">
 
                         <com.hbb20.CountryCodePicker
                             android:layout_width="wrap_content"
@@ -159,8 +162,8 @@
                             android:layout_height="wrap_content"
                             android:hint="@string/mobile_number"
                             android:inputType="number"
-                            android:paddingHorizontal="8dp"
                             android:maxLength="10"
+                            android:paddingHorizontal="8dp"
                             android:theme="@style/EditTextTheme" />
 
                     </LinearLayout>
@@ -178,7 +181,7 @@
                             android:layout_height="match_parent"
                             android:layout_weight="4.5"
                             android:gravity="center_vertical"
-                            android:paddingStart="1.5dp"
+                            android:paddingStart="5dp"
                             android:paddingEnd="0dp"
                             android:text="Gender"
                             android:textColor="@color/black"
@@ -208,9 +211,9 @@
                                 android:layout_height="wrap_content"
                                 android:layout_weight="3"
                                 android:buttonTint="@color/grey"
+                                android:checked="true"
                                 android:text="Male"
-                                android:textColor="@color/black"
-                                android:checked="true"/>
+                                android:textColor="@color/black" />
 
                             <RadioButton
                                 android:id="@+id/radioFemale"
@@ -219,7 +222,7 @@
                                 android:layout_weight="3"
                                 android:buttonTint="@color/grey"
                                 android:text="Female"
-                                android:textColor="@color/black"/>
+                                android:textColor="@color/black" />
 
                         </RadioGroup>
 
@@ -228,7 +231,7 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginHorizontal="15dp"
+                        android:layout_marginHorizontal="19dp"
                         android:layout_marginTop="7dp"
                         android:orientation="horizontal">
 
@@ -257,9 +260,9 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:orientation="horizontal"
                         android:layout_marginHorizontal="20dp"
-                        android:layout_marginTop="7dp">
+                        android:layout_marginTop="7dp"
+                        android:orientation="horizontal">
 
                         <LinearLayout
                             android:layout_width="wrap_content"
@@ -269,76 +272,77 @@
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
+                                android:paddingVertical="10dp"
+                                android:paddingStart="8dp"
+                                android:paddingEnd="0dp"
                                 android:text="Metric"
-                                android:textSize="15sp"
                                 android:textColor="@color/black"
-                                android:paddingVertical="10dp"
-                                android:paddingStart="8dp"/>
+                                android:textSize="15sp" />
 
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
+                                android:layout_marginTop="6dp"
+                                android:paddingVertical="10dp"
+                                android:paddingStart="8dp"
+                                android:paddingEnd="2dp"
                                 android:text="Intermediate"
-                                android:textSize="15sp"
                                 android:textColor="@color/black"
-                                android:paddingVertical="10dp"
-                                android:paddingEnd="2dp"
-                                android:layout_marginTop="6dp"
-                                android:paddingStart="8dp"/>
+                                android:textSize="15sp" />
 
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="Graduation"
-                                android:textSize="15sp"
-                                android:textColor="@color/black"
-                                android:paddingVertical="10dp"
                                 android:layout_marginTop="4dp"
+                                android:paddingVertical="10dp"
+                                android:paddingStart="8dp"
                                 android:paddingEnd="2dp"
-                                android:paddingStart="8dp"/>
+                                android:text="Graduation"
+                                android:textColor="@color/black"
+                                android:textSize="15sp" />
 
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="Post Graduation"
-                                android:textSize="15sp"
-                                android:textColor="@color/black"
-                                android:paddingVertical="10dp"
                                 android:layout_marginTop="6dp"
+                                android:paddingVertical="10dp"
+                                android:paddingStart="8dp"
                                 android:paddingEnd="2dp"
-                                android:paddingStart="8dp"/>
+                                android:text="Post Graduation"
+                                android:textColor="@color/black"
+                                android:textSize="15sp" />
 
                         </LinearLayout>
 
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:orientation="vertical"
-                            android:gravity="end">
+                            android:gravity="end"
+                            android:orientation="vertical">
 
                             <CheckBox
                                 android:id="@+id/cbMetric"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:buttonTint="@color/grey"/>
+                                android:buttonTint="@color/grey" />
 
                             <CheckBox
                                 android:id="@+id/cbIntermediate"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:buttonTint="@color/grey"/>
+                                android:buttonTint="@color/grey" />
 
                             <CheckBox
                                 android:id="@+id/cbGraduation"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:buttonTint="@color/grey"/>
+                                android:buttonTint="@color/grey" />
 
                             <CheckBox
                                 android:id="@+id/cbPostGraduation"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:buttonTint="@color/grey"/>
+                                android:buttonTint="@color/grey" />
 
                         </LinearLayout>
 
@@ -347,9 +351,9 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="0dp"
-                        android:layout_weight="3.5"
                         android:layout_marginHorizontal="17dp"
                         android:layout_marginTop="7dp"
+                        android:layout_weight="3.5"
                         android:gravity="center_vertical"
                         android:paddingStart="1.5dp"
                         android:paddingEnd="0dp"
@@ -361,10 +365,10 @@
                     <com.google.android.material.textfield.TextInputLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        app:counterEnabled="true"
-                        app:boxStrokeColor="@color/grey"
                         android:layout_marginHorizontal="18dp"
                         android:layout_marginTop="7dp"
+                        app:boxStrokeColor="@color/grey"
+                        app:counterEnabled="true"
                         app:counterMaxLength="50">
 
                         <com.google.android.material.textfield.TextInputEditText
@@ -372,15 +376,16 @@
                             android:layout_width="match_parent"
                             android:layout_height="95dp"
                             android:background="#ECE9E9"
+                            android:gravity="top"
+                            android:ellipsize="start"
+                            android:inputType="textMultiLine|textCapWords"
                             android:maxLength="50"
+                            android:overScrollMode="always"
                             android:scrollbarStyle="insideInset"
                             android:scrollbars="vertical"
                             android:singleLine="false"
-                            android:defaultFocusHighlightEnabled="false"
-                            android:ellipsize="start"
-                            android:textSize="16sp"
-                            android:gravity="top"
-                            />
+                            android:textColor="@color/black"
+                            android:textSize="16sp" />
 
                     </com.google.android.material.textfield.TextInputLayout>
 
@@ -392,55 +397,55 @@
                         <LinearLayout
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:orientation="vertical"
-                            android:layout_marginHorizontal="17dp"
-                            android:layout_marginTop="7dp">
+                            android:layout_marginStart="17dp"
+                            android:layout_marginTop="12dp"
+                            android:layout_marginEnd="5dp"
+                            android:orientation="vertical">
 
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:textSize="18sp"
                                 android:paddingStart="2dp"
                                 android:paddingEnd="0dp"
+                                android:text="Country"
                                 android:textColor="@color/black"
-                                android:textStyle="bold"
-                                android:text="Country"/>
+                                android:textSize="18sp"
+                                android:textStyle="bold" />
 
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:textSize="18sp"
+                                android:layout_marginTop="20dp"
                                 android:paddingStart="2dp"
                                 android:paddingEnd="0dp"
-                                android:layout_marginTop="15dp"
+                                android:text="D.O.B."
                                 android:textColor="@color/black"
-                                android:textStyle="bold"
-                                android:text="D.O.B."/>
+                                android:textSize="18sp"
+                                android:textStyle="bold" />
 
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:textSize="18sp"
+                                android:layout_marginTop="20dp"
                                 android:paddingStart="2dp"
                                 android:paddingEnd="0dp"
+                                android:text="Time"
                                 android:textColor="@color/black"
-                                android:layout_marginTop="15dp"
-                                android:textStyle="bold"
-                                android:text="Time"/>
+                                android:textSize="18sp"
+                                android:textStyle="bold" />
 
                         </LinearLayout>
 
                         <LinearLayout
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:orientation="vertical"
-                            android:layout_marginStart="20dp"
-                            android:layout_marginTop="5dp">
+                            android:layout_marginTop="11dp"
+                            android:orientation="vertical">
 
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="match_parent"
-                                android:layout_marginStart="12dp"
+                                android:layout_marginStart="5dp"
                                 android:gravity="center_vertical"
                                 android:text=":"
                                 android:textSize="18sp"
@@ -449,9 +454,9 @@
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="match_parent"
-                                android:layout_marginStart="12dp"
+                                android:layout_marginStart="5dp"
+                                android:layout_marginTop="20dp"
                                 android:gravity="center_vertical"
-                                android:layout_marginTop="15dp"
                                 android:text=":"
                                 android:textSize="18sp"
                                 android:textStyle="bold" />
@@ -459,8 +464,8 @@
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="match_parent"
-                                android:layout_marginStart="12dp"
-                                android:layout_marginTop="15dp"
+                                android:layout_marginStart="5dp"
+                                android:layout_marginTop="20dp"
                                 android:gravity="center_vertical"
                                 android:text=":"
                                 android:textSize="18sp"
@@ -469,28 +474,55 @@
                         </LinearLayout>
 
                         <LinearLayout
-                            android:layout_marginStart="10dp"
-                            android:layout_marginTop="2dp"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:layout_marginStart="8dp"
+                            android:layout_marginTop="2dp"
+                            android:layout_marginEnd="20dp"
                             android:orientation="vertical">
 
                             <Spinner
+                                android:id="@+id/pickCountrySpinner"
+                                style="@style/Widget.AppCompat.Spinner.Underlined"
                                 android:layout_width="match_parent"
-                                android:layout_height="38dp"
-                                android:entries="@array/country_list"/>
+                                android:layout_height="45dp"
+                                android:entries="@array/country_list"
+                                android:theme="@style/EditTextTheme" />
 
-                            <Spinner
+                            <TextView
+                                android:id="@+id/datePicker"
                                 android:layout_width="match_parent"
-                                android:layout_height="38dp"
-                                android:layout_marginTop="5dp"
-                                android:entries="@array/country_list"/>
+                                android:layout_height="40dp"
+                                android:gravity="center_vertical"
+                                android:paddingStart="10dp"
+                                android:paddingEnd="12dp"
+                                android:textColor="@color/black"
+                                app:drawableEndCompat="@drawable/ic_calendar" />
 
-                            <Spinner
+                            <View
                                 android:layout_width="match_parent"
-                                android:layout_height="38dp"
-                                android:layout_marginTop="5dp"
-                                android:entries="@array/country_list"/>
+                                android:layout_height="1dp"
+                                android:layout_marginStart="4dp"
+                                android:layout_marginEnd="4dp"
+                                android:background="@color/grey" />
+
+                            <TextView
+                                android:id="@+id/timePicker"
+                                android:layout_width="match_parent"
+                                android:layout_height="40dp"
+                                android:layout_marginTop="8dp"
+                                android:gravity="center_vertical"
+                                android:paddingStart="10dp"
+                                android:paddingEnd="12dp"
+                                android:textColor="@color/black"
+                                app:drawableEndCompat="@drawable/ic_clock" />
+
+                            <View
+                                android:layout_width="match_parent"
+                                android:layout_height="1dp"
+                                android:layout_marginStart="4dp"
+                                android:layout_marginEnd="4dp"
+                                android:background="@color/grey" />
 
                         </LinearLayout>
 
@@ -500,8 +532,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="12dp"
-                        android:layout_marginEnd="0dp"
                         android:layout_marginTop="7dp"
+                        android:layout_marginEnd="0dp"
                         android:orientation="horizontal">
 
                         <CheckBox
@@ -509,38 +541,40 @@
                             android:layout_width="30dp"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center_vertical"
-                            android:buttonTint="@color/grey"/>
+                            android:buttonTint="@color/grey" />
 
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="50dp"
                             android:layout_marginEnd="12dp"
-                            android:paddingVertical="8dp"
+                            android:gravity="center_vertical"
                             android:orientation="horizontal"
-                            android:gravity="center_vertical">
+                            android:paddingVertical="8dp">
 
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="@string/by_signing_in_you_agree_to_our"
-                                android:textSize="14sp"
                                 android:layout_marginStart="2dp"
-                                android:layout_marginEnd="0dp"/>
+                                android:layout_marginEnd="0dp"
+                                android:text="@string/by_signing_in_you_agree_to_our"
+                                android:textColor="@color/black"
+                                android:textSize="14sp" />
 
                             <TextView
                                 android:id="@+id/txtTermsOfUse"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
+                                android:layout_marginStart="4dp"
                                 android:text="@string/terms_of_use"
-                                android:textSize="14sp"
                                 android:textColor="@color/blue"
-                                android:layout_marginStart="4dp"/>
+                                android:textSize="14sp" />
 
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="@string/policy"
                                 android:layout_marginStart="4dp"
+                                android:text="@string/policy"
+                                android:textColor="@color/black"
                                 android:textSize="14sp" />
 
                         </LinearLayout>
@@ -551,10 +585,9 @@
                         android:id="@+id/tvAgreementError"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="3dp"
-                        android:textColor="@color/red"
-                        android:layout_marginHorizontal="17dp"
-                        android:text=""/>
+                        android:layout_marginHorizontal="19dp"
+                        android:text=""
+                        android:textColor="@color/red" />
 
                 </LinearLayout>
 
@@ -564,13 +597,13 @@
                 android:id="@+id/btnSubmit"
                 android:layout_width="match_parent"
                 android:layout_height="55dp"
-                android:text="Submit"
-                android:textSize="18sp"
+                android:layout_gravity="center_horizontal"
                 android:layout_marginHorizontal="10dp"
                 android:layout_marginTop="10dp"
                 android:backgroundTint="@color/blue"
-                android:layout_gravity="center_horizontal"
-                android:textAllCaps="false"/>
+                android:text="Submit"
+                android:textAllCaps="false"
+                android:textSize="18sp" />
 
         </LinearLayout>
 

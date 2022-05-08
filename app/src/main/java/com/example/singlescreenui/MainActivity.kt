@@ -1,6 +1,9 @@
 package com.example.singlescreenui
 
+import android.app.DatePickerDialog
+import android.app.TimePickerDialog
 import android.content.Intent
+import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Patterns
@@ -8,6 +11,7 @@ import android.view.MotionEvent
 import android.view.View
 import android.widget.*
 import com.google.android.material.textfield.TextInputEditText
+import java.util.*
 
 class MainActivity : AppCompatActivity() {
 
@@ -23,10 +27,53 @@ class MainActivity : AppCompatActivity() {
     lateinit var cbGraduation: CheckBox
     lateinit var cbPostGraduation: CheckBox
     lateinit var etBio : TextInputEditText
+    lateinit var datePicker : TextView
+    lateinit var timePicker: TextView
     lateinit var txtTermsOfUse: TextView
     lateinit var cbAgreement: CheckBox
     lateinit var tvAgreementError: TextView
     lateinit var btnSubmit: Button
+
+    // Added timePicker functionality
+    private val timePickerDialogListener: TimePickerDialog.OnTimeSetListener =
+        object : TimePickerDialog.OnTimeSetListener {
+            override fun onTimeSet(view: TimePicker?, hourOfDay: Int, minute: Int) {
+
+                // logic to properly handle the timings picked by the user
+                val formattedTime: String = when {
+                    hourOfDay == 0 -> {
+                        if (minute < 10) {
+                            "${hourOfDay + 12}:0${minute} am"
+                        } else {
+                            "${hourOfDay + 12}:${minute} am"
+                        }
+                    }
+                    hourOfDay > 12 -> {
+                        if (minute < 10) {
+                            "${hourOfDay - 12}:0${minute} pm"
+                        } else {
+                            "${hourOfDay - 12}:${minute} pm"
+                        }
+                    }
+                    hourOfDay == 12 -> {
+                        if (minute < 10) {
+                            "${hourOfDay}:0${minute} pm"
+                        } else {
+                            "${hourOfDay}:${minute} pm"
+                        }
+                    }
+                    else -> {
+                        if (minute < 10) {
+                            "${hourOfDay}:${minute} am"
+                        } else {
+                            "${hourOfDay}:${minute} am"
+                        }
+                    }
+                }
+
+                timePicker.text = formattedTime
+            }
+        }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -44,8 +91,10 @@ class MainActivity : AppCompatActivity() {
         cbGraduation = findViewById(R.id.cbGraduation)
         cbPostGraduation = findViewById(R.id.cbPostGraduation)
         etBio = findViewById(R.id.etBio)
-        etBio = findViewById(R.id.etBio)
+        datePicker = findViewById(R.id.datePicker)
+        timePicker = findViewById(R.id.timePicker)
         txtTermsOfUse = findViewById(R.id.txtTermsOfUse)
+        cbAgreement = findViewById(R.id.cbAgreement)
         tvAgreementError = findViewById(R.id.tvAgreementError)
         btnSubmit = findViewById(R.id.btnSubmit)
 
@@ -91,16 +140,26 @@ class MainActivity : AppCompatActivity() {
                 etMobileNumber.error = "Mobile number should contain at least 10 digits"
             }
             else if (!cbAgreement.isChecked){
-                tvAgreementError.setText("Please accept terms and conditions")
+                tvAgreementError.text = "Please accept terms and conditions"
             }
             else {
                 tvAgreementError.setText("")
-                Toast.makeText(this, "Submitted...", Toast.LENGTH_SHORT)
+
+                // It will clear all fields when submit button is clicked.
+                etFirstName.text.clear()
+                etLastName.text.clear()
+                etEmail.text.clear()
+                etPassword.text.clear()
+                etMobileNumber.text.clear()
+                etBio.text?.clear()
+                cbAgreement.isChecked = false
+
+                Toast.makeText(this, "Submitted...", Toast.LENGTH_SHORT).show()
             }
 
         }
 
-        // Adding scrollable behaviour in enter message edittext
+        // Adding scrollable behaviour in Bio Edittext.
         etBio.setOnTouchListener(View.OnTouchListener { v, event ->
             if (etBio.hasFocus()) {
                 v.parent.requestDisallowInterceptTouchEvent(true)
@@ -115,6 +174,7 @@ class MainActivity : AppCompatActivity() {
         })
         etBio.setSelection(0)
 
+        // Added checkbox validations in Qualifications part
         cbIntermediate.setOnClickListener {
             cbMetric.isChecked = true
 //            cbMetric.isEnabled = false
@@ -134,6 +194,51 @@ class MainActivity : AppCompatActivity() {
 //            cbIntermediate.isEnabled = false
             cbGraduation.isChecked = true
 //            cbGraduation.isEnabled = false
+        }
+
+        // Added datePicker functionality
+        val myCalendar = Calendar.getInstance()
+        val day = myCalendar.get(Calendar.DAY_OF_MONTH)
+        val year = myCalendar.get(Calendar.YEAR)
+        val month = myCalendar.get(Calendar.MONTH)
+
+        datePicker.setOnClickListener {
+
+            datePicker.setTextColor(Color.parseColor("#000000"))
+
+            var datePicker = DatePickerDialog(
+                this, R.style.DatePickerTheme,
+                { view, year, month, dayOfMonth -> // adding the selected date in the edittext
+                    datePicker.setText(dayOfMonth.toString() + "/" + (month + 1) + "/" + year)
+                }, year, month, day
+
+            )
+            datePicker!!.getDatePicker().setMinDate(myCalendar.getTimeInMillis())
+
+            // shows the dialog
+            datePicker!!.show()
+
+        }
+
+        // Added timePicker functionality
+        timePicker.setOnClickListener {
+            val timePicker: TimePickerDialog = TimePickerDialog(
+                // pass the Context
+                this,
+                // listener to perform task when time is picked
+                timePickerDialogListener,
+                // default hour when the time picker dialog is opened
+                12,
+                // default minute when the time picker dialog is opened
+                10,
+                // 24 hours time picker is
+                // false (varies according to the region)
+                false
+            )
+
+            // then after building the timepicker
+            // dialog show the dialog to user
+            timePicker.show()
         }
 
         txtTermsOfUse.setOnClickListener {

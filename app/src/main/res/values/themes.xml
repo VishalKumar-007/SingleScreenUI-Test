@@ -13,9 +13,28 @@
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
     </style>
+
+    // Edittext theme
     <style name="EditTextTheme" parent="Theme.AppCompat.Light.DarkActionBar">
         <item name="colorControlNormal">@color/grey</item>
         <item name="colorControlActivated">@color/grey</item>
         <item name="colorControlHighlight">@color/grey</item>
     </style>
+
+    // Bio Edittext theme (not used)
+    <style name="BioEdittextTheme" parent="TextAppearance.Design.Hint">
+        <item name="android:textSize">9sp</item>
+        <item name="android:paddingTop">0dp</item>
+    </style>
+
+    // DatePicker theme
+    <style name="DatePickerTheme" parent="ThemeOverlay.AppCompat.Dialog">
+        <item name="colorAccent">@color/blue</item>
+    </style>
+
+    // TimePicker theme (not used)
+    <style name="TimePickerTheme" parent="Theme.AppCompat.Light.Dialog">
+        <item name="colorAccent">@color/blue</item>
+    </style>
+
 </resources>
