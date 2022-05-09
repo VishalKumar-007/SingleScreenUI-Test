@@ -1,23 +1,30 @@
 package com.example.singlescreenui
 
+import android.app.Activity
 import android.app.DatePickerDialog
 import android.app.TimePickerDialog
 import android.content.Intent
 import android.graphics.Color
+import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.provider.MediaStore
 import android.util.Patterns
 import android.view.MotionEvent
 import android.view.View
 import android.widget.*
 import com.google.android.material.textfield.TextInputEditText
+import de.hdodenhof.circleimageview.CircleImageView
+import java.io.IOException
 import java.util.*
 
 class MainActivity : AppCompatActivity() {
 
-//    lateinit var imgCircleProfile: CircleImageView
-//    lateinit var imgAddProfile: ImageView
-//    lateinit var imgRemoveProfile: ImageView
+    val SELECT_REQUEST_CODE = 1
+
+    lateinit var imgCircleProfile: CircleImageView
+    lateinit var imgAddProfile: ImageView
+    lateinit var imgRemoveProfile: ImageView
     lateinit var etFirstName: EditText
     lateinit var etLastName: EditText
     lateinit var etEmail: EditText
@@ -83,9 +90,9 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-//        imgCircleProfile = findViewById(R.id.imgCircleProfile)
-//        imgAddProfile = findViewById(R.id.imgAddProfile)
-//        imgRemoveProfile = findViewById(R.id.imgRemoveProfile)
+        imgCircleProfile = findViewById(R.id.imgCircleProfile)
+        imgAddProfile = findViewById(R.id.imgAddProfile)
+        imgRemoveProfile = findViewById(R.id.imgRemoveProfile)
         etFirstName = findViewById(R.id.etFirstName)
         etLastName = findViewById(R.id.etLastName)
         etEmail = findViewById(R.id.etEmail)
@@ -177,6 +184,24 @@ class MainActivity : AppCompatActivity() {
 
         }
 
+        // Added imagePicker functionality
+        imgAddProfile.setOnClickListener {
+            val galleryIntent = Intent(
+                Intent.ACTION_PICK,
+                MediaStore.Images.Media.EXTERNAL_CONTENT_URI
+            )
+            startActivityForResult(galleryIntent, SELECT_REQUEST_CODE)
+            imgAddProfile.visibility = View.GONE
+        }
+
+        imgCircleProfile.setOnClickListener {
+            val galleryIntent = Intent(
+                Intent.ACTION_PICK,
+                MediaStore.Images.Media.EXTERNAL_CONTENT_URI
+            )
+            startActivityForResult(galleryIntent, SELECT_REQUEST_CODE)
+        }
+
         // Adding scrollable behaviour in Bio Edittext.
         etBio.setOnTouchListener(View.OnTouchListener { v, event ->
             if (etBio.hasFocus()) {
@@ -264,4 +289,28 @@ class MainActivity : AppCompatActivity() {
         }
 
     }
+
+    // Adding image in ImageView
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+
+        // Added image in image view
+        if (resultCode == Activity.RESULT_CANCELED) {
+            return
+        }
+
+        if (requestCode == SELECT_REQUEST_CODE) {
+            if (data != null) {
+                val contentURI: Uri? = data.data
+                try {
+                    val bitmap =
+                        MediaStore.Images.Media.getBitmap(this?.contentResolver, contentURI)
+                    imgCircleProfile.setImageBitmap(bitmap)
+                } catch (e: IOException) {
+                    e.printStackTrace()
+                }
+            }
+        }
+    }
+
 }
